@@ -26,8 +26,8 @@ jobs:
 
       - name: Commit and push changes to git
         run: |
-          git add -f quantum1_notes.pdf
-          git commit -m "[bot] update quantum1_notes.pdf"
+          git add -f qm1_notes.pdf
+          git commit -m "[bot] update qm1_notes.pdf"
           git status
           git push
 

@@ -13,7 +13,7 @@ CROSS="\xE2\x9D\x8C"     # ❌
 BOOK="\xF0\x9F\x93\x96"  # 📖
 
 # strings
-EXPORT="qm1_notes.pdf"
+EXPORT=$(cat build-config.yml | yq '.export-name')
 
 # Progress bar function
 progress_bar() {
@@ -65,7 +65,7 @@ if [[ ! -f temp ]]; then
   echo -e "${GREEN}${CHECK} Moved file to ${EXPORT}!${NC}"
 
   # Cleanup temporary files
-  rm */*.aux *.aux *.log *.out
+  rm */*.aux *.aux */*.log *.log */*.out *.out
 
   echo -e "${GREEN}${CHECK} Cleanup complete!${NC}"
 fi
