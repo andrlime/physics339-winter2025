@@ -1,0 +1,37 @@
+version: '3'
+
+tasks:
+  open:
+    cmds:
+      - open qm1_notes.pdf
+    silent: true
+  preview:
+    cmds:
+      - ./build.sh 1
+    silent: true
+  build:
+    cmds:
+      - ./build.sh 2
+    silent: true
+  clean:
+    cmds:
+      - rm main.toc
+      - rm qm1_notes.pdf 
+    silent: true
+  o:
+    cmds:
+      - task: open
+    silent: true
+  p:
+    cmds:
+      - task: preview
+    silent: true
+  b:
+    cmds:
+      - task: build
+    silent: true
+  c:
+    cmds:
+      - task: clean
+    silent: true
+

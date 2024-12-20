@@ -1,0 +1,219 @@
+% packages
+\documentclass[b5paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.1in]{geometry} % 0.9 for pset, 1.4 for livetex notes
+
+% Math libraries
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsthm}
+
+% Formatting
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage[titles]{tocloft}
+
+% Additional commands
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{xfrac}
+\usepackage{mathtools}
+
+% Graphcs
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+% Content
+\usepackage{physics}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{sectsty}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=black,
+}
+
+\allsectionsfont{\sffamily}
+\renewcommand{\cftsecfont}{\normalfont\bfseries\sffamily}
+\renewcommand*{\contentsname}{Table of Contents}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\renewcommand\real{\mathbb{R}}
+\newcommand\complex{\mathbb{C}}
+\newcommand\integer{\mathbb{Z}}
+\newcommand\rational{\mathbb{Q}}
+\renewcommand\natural{\mathbb{N}}
+\newcommand\probability{\mathbb{P}}
+\newcommand\field{\mathbb{F}}
+\newcommand\qsp{\qq{}}
+\newcommand\curlyf{\mathcal{F}}
+\newcommand\psp{(\Omega, \curlyf, \probability)}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\definecolor{DARKBLUE}{HTML}{005E7A}
+\definecolor{BLACK}{HTML}{121212}
+\definecolor{DARKRED}{HTML}{83223C}
+\definecolor{ORANGE}{HTML}{F0B12C}
+\definecolor{CYAN}{HTML}{2CF0CB}
+\definecolor{RED}{HTML}{C41E3A}
+
+\newcounter{lemmacounter}
+\newcounter{definitioncounter}
+\newtcolorbox{squarebox}{
+  sharp corners,
+  colback=yellow!5!white,
+  colframe=DARKBLUE!75!BLACK,
+  boxrule=0.5px
+}
+
+\newtcolorbox{squarebox2}{
+  sharp corners,
+  colback=yellow!5!white,
+  colframe=ORANGE!75!BLACK,
+  boxrule=0.5px
+}
+
+\newtcolorbox{roundbox1}{
+  colback=yellow!5!white,
+  colframe=BLACK!75!BLACK,
+  boxrule=0.5px
+}
+
+\newtcolorbox{roundbox2}{
+  colback=yellow!5!white,
+  colframe=DARKRED!75!BLACK,
+  boxrule=0.5px
+}
+
+\newtcolorbox{roundbox3}{
+  colback=yellow!5!white,
+  colframe=CYAN!75!BLACK,
+  boxrule=0.5px
+}
+
+\newtcolorbox{roundbox4}{
+  sharp corners,
+  colback=RED!5!white,
+  colframe=RED!75!BLACK,
+  boxrule=0.5px
+}
+
+\newenvironment{problem}
+  {\begin{roundbox1}}
+  {\end{roundbox1}}
+  
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+\newenvironment{definition}
+  {\begin{roundbox1}
+  \stepcounter{lemmacounter}
+  \textcolor{BLACK}{\textsf{\textbf{Definition \thesection.\arabic{lemmacounter}}}}}
+  {\end{roundbox1}}
+
+\newenvironment{example}
+  {\begin{roundbox2}
+  \stepcounter{lemmacounter}
+  \textcolor{DARKRED}{\textsf{\textbf{Example \thesection.\arabic{lemmacounter}}}}}
+  {\end{roundbox2}}
+
+\newenvironment{lemma}
+  {\begin{squarebox2}
+  \stepcounter{lemmacounter}
+  \textcolor{ORANGE}{\textsf{\textbf{Lemma \thesection.\arabic{lemmacounter}}}}}
+  {\end{squarebox2}}
+
+\newenvironment{aside}
+  {\begin{roundbox4}
+  \textcolor{RED}{\textsf{\textbf{Note}}}}
+  {\end{roundbox4}}
+  
+\newenvironment{theorem}
+  {\begin{squarebox}
+  \stepcounter{lemmacounter}
+  \textcolor{DARKBLUE}{\textsf{\textbf{Theorem \thesection.\arabic{lemmacounter}}}}}
+  {\end{squarebox}}
+  
+\newenvironment{proposition}
+  {\begin{roundbox3}
+  \stepcounter{lemmacounter}
+  \textcolor{DARKBLUE}{\textsf{\textbf{Proposition \thesection.\arabic{lemmacounter}}}}}
+  {\end{roundbox3}}
+
+\makeatletter
+\DeclareRobustCommand{\@seccntformat}[1]{%
+  \def\temp@@a{#1}%
+  \def\temp@@b{subsubsection}%
+  \ifx\temp@@a\temp@@b
+  \textcolor{DARKRED}{\csname the#1\endcsname}%
+  \quad
+  \else
+  \textcolor{DARKBLUE}{§\csname the#1\endcsname}%
+  \quad
+  \fi
+} 
+\makeatother
+
+\numberwithin{equation}{section}
+\numberwithin{lemmacounter}{section}
+\numberwithin{definitioncounter}{section}
+
+\begin{document}
+    \include{constants.tex}
+    \pagestyle{fancy}
+    \fancyfoot[C]{}
+    \fancyhead[L]{\textbf{Andrew Li} (\term)}
+    \fancyfoot[L]{\courseshort \: \coursetitle}
+    \fancyfoot[R]{\thepage}
+
+    \title{\textbf{\textsf{\courseshort \, Lecture Notes}}}
+    \author{Andrew Li}
+    \date{\term}
+    \clearpage\maketitle
+    \noindent Original lecture notes for \textbf{\courseshort: \coursetitle}, from \term, taught by Professor \prof. This course follows \textbook, ISBN \isbn.
+    \thispagestyle{empty}
+
+    \tableofcontents
+    \AddToHook{cmd/section/before}{\clearpage}
+    
+    \include{contents/lecture1.tex}
+    \include{contents/lecture2.tex}
+    \include{contents/lecture3.tex}
+    \include{contents/lecture4.tex}
+    \include{contents/lecture5.tex}
+    \include{contents/lecture6.tex}
+    \include{contents/lecture7.tex}
+    \include{contents/lecture8.tex}
+    \include{contents/lecture9.tex}
+    \include{contents/lecture10.tex}
+    \include{contents/lecture11.tex}
+    \include{contents/lecture12.tex}
+    \include{contents/lecture13.tex}
+    \include{contents/lecture14.tex}
+    \include{contents/lecture15.tex}
+    \include{contents/lecture16.tex}
+    \include{contents/lecture17.tex}
+    \include{contents/lecture18.tex}
+    \include{contents/lecture19.tex}
+    \include{contents/lecture20.tex}
+    \include{contents/lecture21.tex}
+    \include{contents/lecture22.tex}
+    \include{contents/lecture23.tex}
+    \include{contents/lecture24.tex}
+    \include{contents/lecture25.tex}
+    \include{contents/lecture26.tex}
+
+\end{document}
